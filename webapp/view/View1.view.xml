@@ -1,0 +1,73 @@
+<mvc:View controllerName="callgeneratior.controller.View1"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core">
+  <Page title="API Fetch Call Code Generator">
+    <content>
+      <VBox>
+        <!-- API URL Input -->
+        <Label text="API URL" />
+        <Input id="apiUrlInput" placeholder="Enter the API URL" />
+
+        <!-- HTTP Method Dropdown -->
+        <Label text="HTTP Method" />
+        <Select id="httpMethodSelect">
+          <core:Item key="GET" text="GET" />
+          <core:Item key="POST" text="POST" />
+          <core:Item key="PUT" text="PUT" />
+          <core:Item key="DELETE" text="DELETE" />
+        </Select>
+
+        <!-- Headers Section -->
+        <Panel headerText="Headers">
+          <Table id="headersTable" items="{/headers}">
+            <columns>
+              <Column><Label text="Header Name" /></Column>
+              <Column><Label text="Header Value" /></Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Input value="{name}" placeholder="Header Name" />
+                  <Input value="{value}" placeholder="Header Value" />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+          <Button text="Add Header" press="onAddHeader" />
+        </Panel>
+
+        <!-- Query Params Section -->
+        <Panel headerText="Query Parameters">
+          <Table id="queryParamsTable" items="{/params}">
+            <columns>
+              <Column><Label text="Key" /></Column>
+              <Column><Label text="Value" /></Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Input value="{key}" placeholder="Param Key" />
+                  <Input value="{value}" placeholder="Param Value" />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </Panel>
+
+        <!-- Request Body Section -->
+        <Panel headerText="Request Body">
+          <TextArea id="requestBodyInput" rows="5" placeholder="Enter request body" />
+        </Panel>
+
+        <!-- Generate Code Button -->
+        <Button text="Generate Fetch Code" press="onGenerateCode" />
+
+        <!-- Generated Code Display -->
+        <TextArea id="generatedCodeArea" rows="10" editable="false" />
+        <Button text="Copy to Clipboard" press="onCopyCode" />
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>
